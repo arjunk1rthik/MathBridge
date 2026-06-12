@@ -1,0 +1,564 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0f0f17;
+    color: white;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7c4dff;
+    border-radius: 20px;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 8%;
+
+    backdrop-filter: blur(20px);
+
+    background: rgba(20,20,35,0.8);
+
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.logo-accent {
+    color: #9b7cff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: #9b7cff;
+}
+
+.hamburger {
+    display: none;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 120px 8% 60px;
+
+    background:
+        radial-gradient(circle at top left,
+        rgba(124,77,255,.35),
+        transparent 40%),
+
+        radial-gradient(circle at bottom right,
+        rgba(179,136,255,.25),
+        transparent 40%);
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    border-radius: 999px;
+
+    margin-bottom: 25px;
+
+    background: rgba(124,77,255,.15);
+
+    border: 1px solid rgba(124,77,255,.4);
+
+    color: #b99cff;
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #d6d6d6;
+    max-width: 700px;
+    margin: auto;
+}
+
+.hero-buttons {
+    margin-top: 40px;
+
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.primary-btn,
+.secondary-btn {
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 12px;
+    transition: .3s;
+    font-weight: 600;
+}
+
+.primary-btn {
+    background: linear-gradient(
+        135deg,
+        #7c4dff,
+        #9b7cff
+    );
+
+    color: white;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+}
+
+.secondary-btn {
+    border: 1px solid rgba(255,255,255,.2);
+    color: white;
+}
+
+.secondary-btn:hover {
+    background: rgba(255,255,255,.05);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    padding: 100px 8%;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.section-header p {
+    color: #bfbfbf;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+
+    padding: 0 8% 80px;
+}
+
+.stat-card {
+    text-align: center;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.05);
+
+    backdrop-filter: blur(20px);
+}
+
+.stat-card h2 {
+    font-size: 2.5rem;
+    color: #9b7cff;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 25px;
+}
+
+.about-content h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    color: #cfcfcf;
+    margin-bottom: 25px;
+}
+
+.achievement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.achievement-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.achievement-item i {
+    color: #9b7cff;
+}
+
+/* =========================
+   FEATURE CARDS
+========================= */
+
+.feature-grid,
+.curriculum-grid,
+.pricing-grid,
+.testimonial-grid,
+.competition-grid {
+    display: grid;
+    gap: 25px;
+}
+
+.feature-grid {
+    grid-template-columns: repeat(4,1fr);
+}
+
+.curriculum-grid {
+    grid-template-columns: repeat(3,1fr);
+}
+
+.pricing-grid {
+    grid-template-columns: repeat(3,1fr);
+}
+
+.testimonial-grid {
+    grid-template-columns: repeat(2,1fr);
+}
+
+.competition-grid {
+    grid-template-columns: repeat(3,1fr);
+}
+
+.feature-card,
+.curriculum-card,
+.pricing-card,
+.testimonial-card {
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.05);
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,.05);
+
+    transition: .3s;
+}
+
+.feature-card:hover,
+.curriculum-card:hover,
+.pricing-card:hover {
+    transform: translateY(-6px);
+}
+
+.feature-card i {
+    font-size: 2rem;
+    color: #9b7cff;
+    margin-bottom: 15px;
+}
+
+.feature-card h3,
+.curriculum-card h3,
+.pricing-card h3 {
+    margin-bottom: 15px;
+}
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline {
+    max-width: 900px;
+    margin: auto;
+}
+
+.timeline-item {
+    margin-bottom: 25px;
+
+    padding: 25px;
+
+    border-left: 4px solid #7c4dff;
+
+    background: rgba(255,255,255,.04);
+}
+
+/* =========================
+   PRICING
+========================= */
+
+.price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #9b7cff;
+}
+
+.price span {
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.featured {
+    border: 2px solid #9b7cff;
+    position: relative;
+}
+
+.popular-tag {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+
+    background: #9b7cff;
+
+    color: black;
+
+    font-weight: 700;
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+}
+
+/* =========================
+   FREE TRIAL
+========================= */
+
+.trial-card {
+    text-align: center;
+
+    padding: 60px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,77,255,.25),
+            rgba(180,140,255,.15)
+        );
+}
+
+/* =========================
+   FAQ
+========================= */
+
+.faq-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+
+    padding: 20px;
+
+    background: rgba(255,255,255,.05);
+
+    border: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+}
+
+.faq-answer {
+    display: none;
+
+    padding: 20px;
+
+    color: #d6d6d6;
+
+    background: rgba(255,255,255,.03);
+
+    border-radius: 0 0 12px 12px;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-form {
+    max-width: 800px;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 18px;
+
+    border-radius: 12px;
+
+    border: none;
+
+    background: rgba(255,255,255,.05);
+
+    color: white;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 60px 8%;
+    text-align: center;
+    background: #09090f;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+
+    margin: 25px 0;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.copyright {
+    color: #999;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .about-grid,
+    .feature-grid,
+    .curriculum-grid,
+    .pricing-grid,
+    .testimonial-grid,
+    .competition-grid,
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: white;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+}
