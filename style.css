@@ -657,3 +657,6 @@ footer{
     }
 
 }
+.curriculum-content.open{
+    display:block;
+}
