@@ -30,22 +30,19 @@ curriculumButtons.forEach(button => {
         const content =
         button.nextElementSibling;
 
-        const isOpen =
-        content.style.display === "block";
-
         document
         .querySelectorAll(".curriculum-content")
         .forEach(section => {
 
-            section.style.display = "none";
+            if (section !== content) {
+
+                section.classList.remove("open");
+
+            }
 
         });
 
-        if (!isOpen) {
-
-            content.style.display = "block";
-
-        }
+        content.classList.toggle("open");
 
     });
 
@@ -194,7 +191,7 @@ revealItems.forEach(item => {
 });
 
 // =========================
-// STATS COUNTER
+// COUNTER ANIMATION
 // =========================
 
 const statNumbers =
@@ -321,6 +318,24 @@ document
         }
 
     );
+
+});
+
+// =========================
+// CLOSE MOBILE MENU AFTER CLICK
+// =========================
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove(
+        "mobile-active"
+        );
+
+    });
 
 });
 
