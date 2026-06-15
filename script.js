@@ -12,8 +12,6 @@ if (hamburger) {
 
         navLinks.classList.toggle("mobile-active");
 
-        hamburger.classList.toggle("active");
-
     });
 
 }
@@ -37,9 +35,9 @@ curriculumButtons.forEach(button => {
 
         document
         .querySelectorAll(".curriculum-content")
-        .forEach(item => {
+        .forEach(section => {
 
-            item.style.display = "none";
+            section.style.display = "none";
 
         });
 
@@ -54,7 +52,7 @@ curriculumButtons.forEach(button => {
 });
 
 // =========================
-// NAVBAR SCROLL EFFECT
+// NAVBAR EFFECT
 // =========================
 
 const navbar =
@@ -64,21 +62,18 @@ window.addEventListener("scroll", () => {
 
     if (window.scrollY > 50) {
 
-        navbar.style.padding =
-        "14px 8%";
-
         navbar.style.background =
-        "rgba(5,5,15,0.95)";
+        "rgba(5,5,15,0.97)";
 
         navbar.style.boxShadow =
-        "0 10px 30px rgba(0,0,0,.35)";
+        "0 10px 25px rgba(0,0,0,.35)";
+
+        navbar.style.padding =
+        "15px 8%";
 
     }
 
     else {
-
-        navbar.style.padding =
-        "20px 8%";
 
         navbar.style.background =
         "rgba(10,10,20,.85)";
@@ -86,73 +81,67 @@ window.addEventListener("scroll", () => {
         navbar.style.boxShadow =
         "none";
 
+        navbar.style.padding =
+        "20px 8%";
+
     }
 
 });
 
 // =========================
-// FAQ ACCORDION
+// ACTIVE NAV LINKS
 // =========================
 
-const faqQuestions =
-document.querySelectorAll(".faq-question");
+const sections =
+document.querySelectorAll("section");
 
-faqQuestions.forEach(question => {
+const navItems =
+document.querySelectorAll(".nav-links a");
 
-    question.addEventListener("click", () => {
+window.addEventListener("scroll", () => {
 
-        const answer =
-        question.nextElementSibling;
+    let current = "";
 
-        const isOpen =
-        answer.style.display === "block";
+    sections.forEach(section => {
 
-        document
-        .querySelectorAll(".faq-answer")
-        .forEach(item => {
+        const sectionTop =
+        section.offsetTop - 180;
 
-            item.style.display = "none";
+        const sectionHeight =
+        section.clientHeight;
 
-        });
+        if (
 
-        if (!isOpen) {
+            pageYOffset >= sectionTop &&
 
-            answer.style.display = "block";
+            pageYOffset <
+            sectionTop + sectionHeight
+
+        ) {
+
+            current =
+            section.getAttribute("id");
 
         }
 
     });
 
-});
+    navItems.forEach(link => {
 
-// =========================
-// SMOOTH SCROLL
-// =========================
-
-document
-.querySelectorAll('a[href^="#"]')
-.forEach(anchor => {
-
-    anchor.addEventListener(
-    "click",
-
-    function(e) {
-
-        e.preventDefault();
-
-        const target =
-        document.querySelector(
-        this.getAttribute("href")
+        link.classList.remove(
+        "active-link"
         );
 
-        if(target){
+        if (
 
-            target.scrollIntoView({
+            link.getAttribute("href") ===
+            "#" + current
 
-                behavior: "smooth",
-                block: "start"
+        ) {
 
-            });
+            link.classList.add(
+            "active-link"
+            );
 
         }
 
@@ -164,21 +153,21 @@ document
 // SCROLL REVEAL ANIMATION
 // =========================
 
-const revealElements =
+const revealItems =
 document.querySelectorAll(
 
-'.achievement-box, .feature-card, .pricing-card, .timeline-item, .contact-card, .stat-card'
+'.achievement-box, .feature-card, .pricing-card, .contact-card, .stat-card'
 
 );
 
-const observer =
+const revealObserver =
 new IntersectionObserver(
 
 (entries) => {
 
     entries.forEach(entry => {
 
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
 
             entry.target.classList.add(
             "show"
@@ -196,145 +185,59 @@ new IntersectionObserver(
 
 );
 
-revealElements.forEach(element => {
+revealItems.forEach(item => {
 
-    element.classList.add("hidden");
+    item.classList.add("hidden");
 
-    observer.observe(element);
-
-});
-
-// =========================
-// ACTIVE NAVIGATION LINK
-// =========================
-
-const sections =
-document.querySelectorAll("section");
-
-const navItems =
-document.querySelectorAll(".nav-links a");
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop =
-        section.offsetTop - 150;
-
-        const sectionHeight =
-        section.clientHeight;
-
-        if (
-
-            pageYOffset >= sectionTop &&
-
-            pageYOffset <
-            sectionTop +
-            sectionHeight
-
-        ){
-
-            current =
-            section.getAttribute("id");
-
-        }
-
-    });
-
-    navItems.forEach(link => {
-
-        link.classList.remove(
-        "active-link"
-        );
-
-        if(
-
-            link.getAttribute("href") ===
-            "#" + current
-
-        ){
-
-            link.classList.add(
-            "active-link"
-            );
-
-        }
-
-    });
+    revealObserver.observe(item);
 
 });
 
 // =========================
-// STATS COUNTER ANIMATION
+// STATS COUNTER
 // =========================
 
-const statCards =
-document.querySelectorAll(
-".stat-card h2"
-);
+const statNumbers =
+document.querySelectorAll(".stat-card h2");
 
-function animateValue(
+function animateCounter(
 element,
-start,
-end,
-duration
+target
 ){
 
-    let startTime = null;
+    let current = 0;
 
-    function animation(currentTime){
+    const increment =
+    Math.ceil(target / 40);
 
-        if(!startTime)
-        startTime = currentTime;
+    const timer =
+    setInterval(() => {
 
-        const progress =
-        Math.min(
+        current += increment;
 
-            (currentTime - startTime) /
-            duration,
+        if (current >= target) {
 
-            1
+            current = target;
 
-        );
-
-        const value =
-        Math.floor(
-
-            progress *
-            (end - start) +
-            start
-
-        );
-
-        element.textContent =
-        value;
-
-        if(progress < 1){
-
-            requestAnimationFrame(
-            animation
-            );
+            clearInterval(timer);
 
         }
 
-    }
+        element.textContent =
+        current;
 
-    requestAnimationFrame(
-    animation
-    );
+    }, 30);
 
 }
 
-const counterObserver =
+const statsObserver =
 new IntersectionObserver(
 
 (entries) => {
 
     entries.forEach(entry => {
 
-        if(
+        if (
 
             entry.isIntersecting &&
 
@@ -342,32 +245,25 @@ new IntersectionObserver(
             "counted"
             )
 
-        ){
+        ) {
 
             const text =
             entry.target.textContent;
 
-            const num =
+            const number =
             parseInt(
             text.replace(/\D/g,'')
             );
 
-            if(!isNaN(num)){
+            if (!isNaN(number)) {
 
                 entry.target.classList.add(
                 "counted"
                 );
 
-                animateValue(
-
+                animateCounter(
                     entry.target,
-
-                    0,
-
-                    num,
-
-                    1200
-
+                    number
                 );
 
             }
@@ -384,17 +280,56 @@ new IntersectionObserver(
 
 );
 
-statCards.forEach(card => {
+statNumbers.forEach(stat => {
 
-    counterObserver.observe(card);
+    statsObserver.observe(stat);
 
 });
 
 // =========================
-// PAGE LOADED
+// SMOOTH SCROLL
+// =========================
+
+document
+.querySelectorAll('a[href^="#"]')
+.forEach(anchor => {
+
+    anchor.addEventListener(
+
+        "click",
+
+        function(e){
+
+            e.preventDefault();
+
+            const target =
+            document.querySelector(
+            this.getAttribute("href")
+            );
+
+            if(target){
+
+                target.scrollIntoView({
+
+                    behavior: "smooth",
+                    block: "start"
+
+                });
+
+            }
+
+        }
+
+    );
+
+});
+
+// =========================
+// PAGE LOAD
 // =========================
 
 window.addEventListener(
+
 "load",
 
 () => {
@@ -408,6 +343,6 @@ window.addEventListener(
 );
 
 console.log(
-"MathBridge loaded successfully."
+"MathBridge Loaded Successfully"
 );
 ```
