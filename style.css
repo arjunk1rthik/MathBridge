@@ -50,43 +50,72 @@ section{
 ========================= */
 
 .navbar{
-    overflow:visible;
+
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
-    padding:20px 8%;
+    padding:18px 6%;
 
-    background:rgba(10,10,20,.85);
+    background:rgba(10,10,20,.88);
+
     backdrop-filter:blur(20px);
 
     z-index:1000;
+
+    overflow:visible;
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+
 }
 
 .logo{
-    font-size:1.2rem;
+
+    font-size:1.15rem;
+
     font-weight:800;
-    color:#ffffff;
+
+    color:white;
+
+    flex-shrink:0;
+
 }
 
 .nav-links{
+
     display:flex;
+
+    align-items:center;
+
     list-style:none;
-    gap:12px;
-    flex-wrap:wrap;
+
+    gap:14px;
+
+    flex-wrap:nowrap;
+
 }
 
 .nav-links a{
+
     color:white;
+
+    font-size:.92rem;
+
     font-weight:500;
-    transition:.3s;
-    font-size:.9rem;
+
     white-space:nowrap;
+
+    transition:.25s;
+
 }
 
 .nav-links a:hover{
@@ -559,10 +588,62 @@ footer{
    MOBILE
 ========================= */
 
-@media(max-width:900px){
+@media(max-width:950px){
+
+.nav-links{
+
+    display:none;
+
+}
+
+.mobile-active{
+
+    display:flex !important;
+
+    flex-direction:column;
+
+    position:absolute;
+
+    top:70px;
+
+    right:15px;
+
+    width:240px;
+
+    background:rgba(10,10,20,.98);
+
+    padding:20px;
+
+    border-radius:18px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+    gap:18px;
+
+    z-index:2000;
+
+}
+
+.hamburger{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
 
 .hero h1{
+
     font-size:3rem;
+
+}
+
+.hero-buttons{
+
+    flex-direction:column;
+
 }
 
 .stats,
@@ -570,31 +651,15 @@ footer{
 .feature-grid,
 .pricing-grid,
 .contact-container{
+
     grid-template-columns:1fr;
-}
 
-.nav-links{
-    display:none;
-}
-
-.hamburger{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
-}
-
-.hamburger span{
-    width:25px;
-    height:3px;
-    background:white;
-}
-
-.hero-buttons{
-    flex-direction:column;
 }
 
 .section-header h2{
+
     font-size:2.2rem;
+
 }
 
 }
@@ -662,4 +727,43 @@ footer{
 }
 .curriculum-content.open{
     display:block;
+}
+.curriculum-philosophy,
+.placement-box{
+
+    max-width:1000px;
+
+    margin:0 auto 30px auto;
+
+    padding:30px;
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:20px;
+
+}
+
+.curriculum-philosophy h3,
+.placement-box h3{
+
+    color:#a48aff;
+
+    margin-bottom:15px;
+
+}
+
+.curriculum-philosophy ul,
+.placement-box ul{
+
+    padding-left:25px;
+
+    margin-top:15px;
+
+}
+
+.curriculum-philosophy li,
+.placement-box li{
+
+    margin-bottom:10px;
+
 }
