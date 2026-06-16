@@ -1,10 +1,15 @@
 console.log("SCRIPT LOADED");
 
-document
-.querySelectorAll(".curriculum-button")
-.forEach(button => {
+const curriculumButtons =
+document.querySelectorAll(".curriculum-button");
+
+console.log("Buttons found:", curriculumButtons.length);
+
+curriculumButtons.forEach(button => {
 
     button.addEventListener("click", () => {
+
+        console.log("BUTTON CLICKED");
 
         const content =
         button.nextElementSibling;
