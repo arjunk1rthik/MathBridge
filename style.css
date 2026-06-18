@@ -826,3 +826,59 @@ footer{
     font-weight:700;
 
 }
+.curriculum-layout{
+
+    display:flex;
+
+    gap:40px;
+
+    align-items:flex-start;
+
+}
+
+.curriculum-topics{
+
+    flex:1;
+
+}
+
+.curriculum-image{
+
+    width:260px;
+
+    border-radius:16px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.35);
+
+}
+
+.curriculum-image img{
+
+    width:100%;
+
+    display:block;
+
+    border-radius:16px;
+
+}
+
+@media(max-width:900px){
+
+    .curriculum-layout{
+
+        flex-direction:column;
+
+    }
+
+    .curriculum-image{
+
+        width:100%;
+
+        max-width:320px;
+
+        margin:auto;
+
+    }
+
+}
