@@ -45,7 +45,7 @@ section{
 }
 
 /* =========================
-   NAVBAR
+   NAVBAR (LOCKED STYLE)
 ========================= */
 
 .navbar{
@@ -82,12 +82,15 @@ section{
     color:#111827;
     font-size:.92rem;
     font-weight:500;
-    transition:.25s;
-    white-space:nowrap;
+    transition:.2s;
 }
 
 .nav-links a:hover{
     color:#2563eb;
+}
+
+.active-link{
+    color:#2563eb !important;
 }
 
 /* =========================
@@ -101,7 +104,6 @@ section{
     justify-content:center;
     text-align:center;
     padding:150px 8% 100px;
-
     background:
     radial-gradient(circle at top left, rgba(59,130,246,.15), transparent 40%),
     radial-gradient(circle at bottom right, rgba(147,197,253,.2), transparent 40%);
@@ -120,15 +122,8 @@ section{
     margin:auto;
 }
 
-.hero-buttons{
-    margin-top:35px;
-    display:flex;
-    justify-content:center;
-    gap:20px;
-}
-
 /* =========================
-   BUTTONS
+   BUTTON SYSTEM (FIXED)
 ========================= */
 
 .primary-btn{
@@ -138,12 +133,12 @@ section{
     font-weight:700;
     background:#2563eb;
     color:white;
-    transition:.3s;
+    transition:.2s;
 }
 
 .primary-btn:hover{
-    transform:translateY(-3px);
     background:#1d4ed8;
+    transform:translateY(-2px);
 }
 
 .secondary-btn{
@@ -151,9 +146,10 @@ section{
     padding:16px 28px;
     border-radius:12px;
     font-weight:700;
-    border:1px solid #dbeafe;
+    background:white;
     color:#2563eb;
-    transition:.3s;
+    border:1px solid #dbeafe;
+    transition:.2s;
 }
 
 .secondary-btn:hover{
@@ -161,24 +157,17 @@ section{
 }
 
 /* =========================
-   STATS / CARDS
+   STATS
 ========================= */
 
-.stats,
-.achievement-grid,
-.feature-grid,
-.pricing-grid,
-.contact-container{
+.stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:25px;
+    padding:0 8% 70px;
 }
 
-.stat-card,
-.achievement-box,
-.feature-card,
-.pricing-card,
-.contact-card{
+.stat-card{
     background:white;
     border:1px solid #dbeafe;
     box-shadow:0 8px 25px rgba(59,130,246,.08);
@@ -187,9 +176,22 @@ section{
     text-align:center;
 }
 
-.stat-card h2{
-    color:#2563eb;
-    font-size:2.5rem;
+/* =========================
+   CARDS (UNIFIED)
+========================= */
+
+.achievement-box,
+.feature-card,
+.pricing-card,
+.contact-card,
+.testimonial-card,
+.stat-card{
+
+    background:white;
+    border:1px solid #dbeafe;
+    box-shadow:0 8px 25px rgba(59,130,246,.08);
+    border-radius:20px;
+
 }
 
 /* =========================
@@ -219,31 +221,11 @@ section{
     display:none;
     padding:25px;
     background:#f8fbff;
-    border-radius:0 0 14px 14px;
-    border:1px solid #dbeafe;
 }
 
-.curriculum-content.open{
-    display:block;
-}
-
-.curriculum-layout{
-    display:flex;
-    gap:40px;
-    align-items:flex-start;
-}
-
-.curriculum-topics{
-    flex:1;
-}
-
-.curriculum-image{
-    width:260px;
-}
-
-.curriculum-image img{
-    width:100%;
-    border-radius:16px;
+.curriculum-content li{
+    color:#374151;
+    margin-bottom:10px;
 }
 
 /* =========================
@@ -257,10 +239,13 @@ section{
 }
 
 .testimonial-card{
-    background:white;
-    border:1px solid #dbeafe;
-    border-radius:20px;
     padding:30px;
+    transition:.2s;
+}
+
+.testimonial-card:hover{
+    transform:translateY(-5px);
+    border-color:#2563eb;
 }
 
 .testimonial-card p{
@@ -274,29 +259,14 @@ section{
 }
 
 /* =========================
-   FREE TRIAL
-========================= */
-
-.trial-card{
-    text-align:center;
-    padding:60px;
-    border-radius:30px;
-    background:linear-gradient(135deg,#eff6ff,#dbeafe);
-}
-
-/* =========================
    FOOTER
 ========================= */
 
 footer{
-    background:#eff6ff;
+    background:#eaf4ff;
     border-top:1px solid #dbeafe;
     padding:60px 8%;
     text-align:center;
-}
-
-.footer-links a{
-    color:#111827;
 }
 
 /* =========================
@@ -309,12 +279,22 @@ footer{
     display:none;
 }
 
-.hero h1{
-    font-size:3rem;
+.mobile-active{
+    display:flex !important;
+    flex-direction:column;
+    position:absolute;
+    top:70px;
+    right:15px;
+    width:240px;
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(0,0,0,.1);
+    gap:18px;
 }
 
-.hero-buttons{
-    flex-direction:column;
+.hero h1{
+    font-size:3rem;
 }
 
 .stats,
@@ -325,48 +305,8 @@ footer{
     grid-template-columns:1fr;
 }
 
-.curriculum-layout{
-    flex-direction:column;
+.section-header h2{
+    font-size:2.2rem;
 }
 
-.curriculum-image{
-    width:100%;
-    max-width:320px;
-    margin:auto;
-}
-
-}
-
-/* =========================
-   ANIMATIONS
-========================= */
-
-.hidden{
-    opacity:0;
-    transform:translateY(40px);
-    transition:.8s;
-}
-
-.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
-.active-link{
-    color:#2563eb !important;
-}
-
-.mobile-active{
-    display:flex !important;
-    flex-direction:column;
-    position:absolute;
-    top:70px;
-    right:15px;
-    width:240px;
-    background:white;
-    border:1px solid #dbeafe;
-    padding:20px;
-    border-radius:15px;
-    gap:15px;
-    z-index:2000;
 }
