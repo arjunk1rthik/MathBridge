@@ -67,7 +67,7 @@ window.addEventListener("scroll", () => {
     ) {
 
         navbar.style.background =
-        "rgba(5,5,15,.97)";
+        "rgba(173,216,230,.88)";
 
         navbar.style.padding =
         "15px 8%";
@@ -80,7 +80,7 @@ window.addEventListener("scroll", () => {
     else {
 
         navbar.style.background =
-        "rgba(10,10,20,.85)";
+        "rgba(173,216,230,.88)";
 
         navbar.style.padding =
         "20px 8%";
