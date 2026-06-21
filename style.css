@@ -245,7 +245,8 @@ section{
 
     gap:25px;
 
-    padding:0 8% 70px;
+    padding:0 8%;
+    margin:50px 0 70px 0;
 }
 
 .stat-card{
