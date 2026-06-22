@@ -70,10 +70,10 @@ window.addEventListener("scroll", () => {
         "rgba(124,77,255,.4)";
 
         navbar.style.padding =
-        "15px 8%";
+        "20px 8%";
 
         navbar.style.boxShadow =
-        "0 10px 30px rgba(0,0,0,.25)";
+        "none";
 
     }
 
