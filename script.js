@@ -305,60 +305,60 @@ window.addEventListener(
 // Each option: which days are active, and which time slots appear on each day.
 // Days: Mon, Tue, Wed, Thu, Fri
 // Slots map to these time windows from the spreadsheet:
-//   "10:00–11:00 AM", "11:05 AM–12:00 PM",
-//   "3:05–4:00 PM",  "6:05–7:00 PM", "7:05–8:00 PM"
+//   "10:00–11:00 AM", "11:00 AM–12:00 PM",
+//   "3:00–4:00 PM",  "6:00–7:00 PM", "7:00–8:00 PM"
 // Level labels match the 1A–5A rows in the spreadsheet.
 
 const SCHEDULE_OPTIONS = {
   "1": [
-    { day: "Monday",    slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Wednesday", slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Friday",    slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
+    { day: "Monday",    slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Wednesday", slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Friday",    slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
   ],
   "2": [
-    { day: "Monday",   slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Tuesday",  slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Thursday", slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
+    { day: "Monday",   slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Tuesday",  slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Thursday", slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
   ],
   "3": [
-    { day: "Monday",    slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Tuesday",   slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Wednesday", slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
+    { day: "Monday",    slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Tuesday",   slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Wednesday", slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
   ],
   "4": [
-    { day: "Monday",  slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Tuesday", slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Friday",  slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
+    { day: "Monday",  slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Tuesday", slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Friday",  slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
   ],
   "5": [
-    { day: "Monday",    slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Wednesday", slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Thursday",  slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
+    { day: "Monday",    slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Wednesday", slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Thursday",  slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
   ],
   "6": [
-    { day: "Monday",   slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Thursday", slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Friday",   slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
+    { day: "Monday",   slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Thursday", slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Friday",   slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
   ],
   "7": [
-    { day: "Tuesday",   slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Wednesday", slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Thursday",  slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
+    { day: "Tuesday",   slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Wednesday", slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Thursday",  slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
   ],
   "8": [
-    { day: "Tuesday",   slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Wednesday", slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Friday",    slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
+    { day: "Tuesday",   slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Wednesday", slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Friday",    slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
   ],
   "9": [
-    { day: "Tuesday",  slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Thursday", slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Friday",   slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
+    { day: "Tuesday",  slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Thursday", slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Friday",   slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
   ],
   "10": [
-    { day: "Wednesday", slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Thursday",  slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
-    { day: "Friday",    slots: ["10:00–11:00 AM","11:05 AM–12:00 PM","3:05–4:00 PM","6:05–7:00 PM","7:05–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
+    { day: "Wednesday", slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Thursday",  slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] },
+    { day: "Friday",    slots: ["10:00–11:00 AM","11:00 AM–12:00 PM","3:00–4:00 PM","6:00–7:00 PM","7:00–8:00 PM"], levels: ["Level 1A","Level 2A","Level 3A","Level 4A","Level 5A"] }
   ]
 };
 
