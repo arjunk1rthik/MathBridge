@@ -57,7 +57,7 @@ section{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px 4%;
+    padding:15px 3%;
     background:rgba(124,77,255,.15);
     backdrop-filter:blur(20px);
     z-index:1000;
@@ -66,22 +66,18 @@ section{
 }
 
 .logo{
-
-    font-size:1.15rem;
-
+    font-size:1rem;
     font-weight:800;
-
     color:#111111;
-
     flex-shrink:0;
-
+    margin-right:12px;
 }
 
 .nav-links{
     display:flex;
     align-items:center;
     list-style:none;
-    gap:clamp(8px, 1.5vw, 22px);
+    gap:clamp(8px, 1.4vw, 20px);
     flex-wrap:nowrap;
     margin-left:auto;
     margin-right:0;
@@ -89,7 +85,7 @@ section{
 
 .nav-links a{
     color:#111111;
-    font-size:clamp(.78rem, 1.1vw, .95rem);
+    font-size:clamp(.76rem, 1vw, .92rem);
     font-weight:500;
     white-space:nowrap;
     transition:.25s;
