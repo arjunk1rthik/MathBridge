@@ -883,3 +883,158 @@ footer{
     }
 
 }
+/* =========================
+   SCHEDULE SECTION
+   Add this to the bottom of style.css
+========================= */
+
+.schedule-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.schedule-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #444444;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.schedule-label i {
+    color: #a48aff;
+}
+
+.schedule-dropdown {
+    width: 100%;
+    max-width: 480px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    border: 2px solid rgba(124, 77, 255, .35);
+    background: #ffffff;
+    color: #111111;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237c4dff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    padding-right: 48px;
+    transition: border-color .25s, box-shadow .25s;
+}
+
+.schedule-dropdown:focus {
+    outline: none;
+    border-color: #7c4dff;
+    box-shadow: 0 0 0 3px rgba(124, 77, 255, .15);
+}
+
+/* Day cards grid */
+.schedule-days-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+}
+
+.schedule-day-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 28px 24px;
+    border-top: 4px solid #7c4dff;
+    animation: fadeIn .35s ease;
+}
+
+.schedule-day-card h4 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #7c4dff;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.schedule-day-card h4 i {
+    font-size: 1rem;
+    color: #a48aff;
+}
+
+.schedule-time-slot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border-radius: 10px;
+    background: rgba(124, 77, 255, .06);
+    margin-bottom: 10px;
+    font-size: .9rem;
+    font-weight: 500;
+    color: #333333;
+}
+
+.schedule-time-slot i {
+    color: #a48aff;
+    font-size: .85rem;
+    flex-shrink: 0;
+}
+
+.schedule-level-badge {
+    margin-left: auto;
+    background: rgba(124, 77, 255, .15);
+    color: #7c4dff;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+/* Placeholder state */
+.schedule-placeholder {
+    text-align: center;
+    padding: 55px 20px;
+    color: #aaaaaa;
+}
+
+.schedule-placeholder i {
+    font-size: 3rem;
+    color: #d0c0ff;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.schedule-placeholder p {
+    font-size: 1rem;
+    color: #888888;
+}
+
+/* Info note */
+.schedule-note {
+    text-align: center;
+    color: #666666;
+    font-size: .9rem;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.schedule-note i {
+    color: #a48aff;
+}
+
+@media (max-width: 950px) {
+    .schedule-days-grid {
+        grid-template-columns: 1fr;
+    }
+}
