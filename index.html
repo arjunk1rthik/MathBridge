@@ -673,7 +673,75 @@ and the confidence to solve unfamiliar mathematical problems.
 </div>
 
 </section>
-```
+
+<!-- =============================================
+     SCHEDULE SECTION
+     INSERT THIS BLOCK after the closing </section>
+     of the "Competition Math & Advanced Problem
+     Solving" section, and BEFORE the pricing section.
+     Also add id="pricing" to your pricing <section>
+     tag if it doesn't already have one.
+============================================= -->
+
+<section id="schedule" class="section">
+
+  <div class="section-header">
+
+    <h2>July Class Schedule</h2>
+
+    <p>
+      All classes meet 3 times per week on Zoom.
+      Choose a scheduling option that fits your week —
+      each option lists the days and time slots available.
+    </p>
+
+  </div>
+
+  <!-- Option Selector -->
+  <div class="schedule-selector">
+
+    <label for="schedule-dropdown" class="schedule-label">
+      <i class="fas fa-calendar-alt"></i>
+      Select a Scheduling Option
+    </label>
+
+    <select id="schedule-dropdown" class="schedule-dropdown">
+      <option value="">— Choose an option —</option>
+      <option value="1">Option 1 &nbsp;·&nbsp; Mon / Wed / Fri</option>
+      <option value="2">Option 2 &nbsp;·&nbsp; Mon / Tue / Thu</option>
+      <option value="3">Option 3 &nbsp;·&nbsp; Mon / Tue / Wed</option>
+      <option value="4">Option 4 &nbsp;·&nbsp; Mon / Tue / Fri</option>
+      <option value="5">Option 5 &nbsp;·&nbsp; Mon / Wed / Thu</option>
+      <option value="6">Option 6 &nbsp;·&nbsp; Mon / Thu / Fri</option>
+      <option value="7">Option 7 &nbsp;·&nbsp; Tue / Wed / Thu</option>
+      <option value="8">Option 8 &nbsp;·&nbsp; Tue / Wed / Fri</option>
+      <option value="9">Option 9 &nbsp;·&nbsp; Tue / Thu / Fri</option>
+      <option value="10">Option 10 &nbsp;·&nbsp; Wed / Thu / Fri</option>
+    </select>
+
+  </div>
+
+  <!-- Schedule Display Cards (hidden until an option is selected) -->
+  <div id="schedule-display" class="schedule-display" style="display:none;">
+
+    <div class="schedule-days-grid" id="schedule-days-grid">
+      <!-- Filled by JS -->
+    </div>
+
+    <p class="schedule-note">
+      <i class="fas fa-info-circle"></i>
+      Each session is approximately 55 minutes.
+      Classes run Monday–Friday in July.
+    </p>
+
+  </div>
+
+  <div id="schedule-placeholder" class="schedule-placeholder">
+    <i class="fas fa-calendar-days"></i>
+    <p>Select an option above to see the weekly day and time breakdown.</p>
+  </div>
+
+</section>
 
 <section id="pricing" class="section">
 
