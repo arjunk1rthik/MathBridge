@@ -62,32 +62,12 @@ document.querySelector(".navbar");
 
 window.addEventListener("scroll", () => {
 
-    if (
-        window.scrollY > 50
-    ) {
-
-        navbar.style.background =
-        "rgba(124,77,255,.4)";
-
-        navbar.style.padding =
-        "20px 8%";
-
-        navbar.style.boxShadow =
-        "none";
-
-    }
-
-    else {
-
-        navbar.style.background =
-        "rgba(124,77,255,.4)";
-
-        navbar.style.padding =
-        "20px 8%";
-
-        navbar.style.boxShadow =
-        "none";
-
+    if (window.scrollY > 50) {
+        navbar.style.background = "rgba(124,77,255,.4)";
+        navbar.style.boxShadow = "none";
+    } else {
+        navbar.style.background = "rgba(124,77,255,.15)";
+        navbar.style.boxShadow = "none";
     }
 
 });
