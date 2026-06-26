@@ -245,6 +245,10 @@ section{
     margin:auto;
 }
 
+.about-wide + .about-wide{
+    margin-top:50px;
+}
+
 .about-wide h3{
     font-size:2rem;
     margin-bottom:20px;
