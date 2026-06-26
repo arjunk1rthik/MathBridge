@@ -1113,3 +1113,9 @@ footer{
         padding: 36px 24px;
     }
 }
+.subheading {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
