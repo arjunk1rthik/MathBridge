@@ -242,7 +242,7 @@ section{
 
 .about-wide{
     max-width:1100px;
-    margin:auto;
+    margin:50px;
 }
 
 .about-wide + .about-wide{
