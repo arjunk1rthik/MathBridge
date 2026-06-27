@@ -397,3 +397,206 @@ if (scheduleDropdown) {
     });
 
 }
+
+// =========================
+// SIGNUP MODAL
+// Add this to the bottom of script.js
+// =========================
+
+const TRIAL_DATES = [
+    { value: "2026-06-27", label: "Saturday, June 27" },
+    { value: "2026-06-28", label: "Sunday, June 28" },
+    { value: "2026-06-29", label: "Monday, June 29" },
+    { value: "2026-06-30", label: "Tuesday, June 30" },
+    { value: "2026-07-01", label: "Wednesday, July 1" },
+    { value: "2026-07-02", label: "Thursday, July 2" },
+    { value: "2026-07-03", label: "Friday, July 3" },
+    { value: "2026-07-05", label: "Sunday, July 5" }
+];
+
+function buildTrialTimeSlots() {
+
+    // 9:00 AM through 8:00 PM, in 30-minute slots
+    const slots = [];
+    let minutes = 9 * 60;
+    const endMinutes = 20 * 60;
+
+    function formatTime(totalMinutes) {
+        let hour = Math.floor(totalMinutes / 60);
+        const minute = totalMinutes % 60;
+        const period = hour >= 12 ? "PM" : "AM";
+        let displayHour = hour % 12;
+        if (displayHour === 0) displayHour = 12;
+        const minuteStr = minute === 0 ? "00" : String(minute);
+        return `${displayHour}:${minuteStr} ${period}`;
+    }
+
+    while (minutes < endMinutes) {
+        const start = formatTime(minutes);
+        const end = formatTime(minutes + 30);
+        slots.push(`${start} - ${end}`);
+        minutes += 30;
+    }
+
+    return slots;
+}
+
+const signupModalOverlay = document.getElementById("signup-modal-overlay");
+const signupModalClose = document.getElementById("signup-modal-close");
+const signupFormView = document.getElementById("signup-form-view");
+const signupSuccessView = document.getElementById("signup-success-view");
+const signupSuccessClose = document.getElementById("signup-success-close");
+const signupForm = document.getElementById("signup-form");
+const openSignupButtons = document.querySelectorAll(".open-signup-modal");
+
+const trialDateSelect = document.getElementById("trial-date");
+const trialTimeSelect = document.getElementById("trial-time");
+const trialDatetimeGroup = document.getElementById("trial-datetime-group");
+const wantsTrialRadios = document.querySelectorAll('input[name="wantsTrial"]');
+
+// Populate the date dropdown
+if (trialDateSelect) {
+
+    TRIAL_DATES.forEach(date => {
+
+        const option = document.createElement("option");
+        option.value = date.value;
+        option.textContent = date.label;
+        trialDateSelect.appendChild(option);
+
+    });
+
+}
+
+// Populate the time dropdown
+if (trialTimeSelect) {
+
+    buildTrialTimeSlots().forEach(slot => {
+
+        const option = document.createElement("option");
+        option.value = slot;
+        option.textContent = slot;
+        trialTimeSelect.appendChild(option);
+
+    });
+
+}
+
+function openSignupModal() {
+
+    if (!signupModalOverlay) return;
+
+    signupModalOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    signupFormView.style.display = "block";
+    signupSuccessView.classList.remove("active");
+
+}
+
+function closeSignupModal() {
+
+    if (!signupModalOverlay) return;
+
+    signupModalOverlay.classList.remove("active");
+    document.body.style.overflow = "";
+
+}
+
+openSignupButtons.forEach(button => {
+
+    button.addEventListener("click", openSignupModal);
+
+});
+
+if (signupModalClose) {
+
+    signupModalClose.addEventListener("click", closeSignupModal);
+
+}
+
+if (signupSuccessClose) {
+
+    signupSuccessClose.addEventListener("click", closeSignupModal);
+
+}
+
+// Close when clicking outside the modal box
+if (signupModalOverlay) {
+
+    signupModalOverlay.addEventListener("click", (e) => {
+
+        if (e.target === signupModalOverlay) {
+            closeSignupModal();
+        }
+
+    });
+
+}
+
+// Close on Escape key
+document.addEventListener("keydown", (e) => {
+
+    if (
+        e.key === "Escape" &&
+        signupModalOverlay &&
+        signupModalOverlay.classList.contains("active")
+    ) {
+        closeSignupModal();
+    }
+
+});
+
+// Show/hide the trial date & time fields based on Yes/No answer
+wantsTrialRadios.forEach(radio => {
+
+    radio.addEventListener("change", () => {
+
+        if (radio.value === "yes" && radio.checked) {
+
+            trialDatetimeGroup.classList.add("open");
+            trialDateSelect.required = true;
+            trialTimeSelect.required = true;
+
+        } else if (radio.value === "no" && radio.checked) {
+
+            trialDatetimeGroup.classList.remove("open");
+            trialDateSelect.required = false;
+            trialTimeSelect.required = false;
+            trialDateSelect.value = "";
+            trialTimeSelect.value = "";
+
+        }
+
+    });
+
+});
+
+// Handle form submission
+if (signupForm) {
+
+    signupForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const formData = new FormData(signupForm);
+        const entry = {};
+
+        formData.forEach((value, key) => {
+            entry[key] = value;
+        });
+
+        // NOTE: Email forwarding / storage isn't wired up yet.
+        // For now we just log the submission so it's easy to confirm
+        // the form works end-to-end while that gets set up.
+        console.log("Signup form submission:", entry);
+
+        signupFormView.style.display = "none";
+        signupSuccessView.classList.add("active");
+
+        signupForm.reset();
+        trialDatetimeGroup.classList.remove("open");
+
+    });
+
+}
