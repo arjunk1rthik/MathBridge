@@ -438,8 +438,16 @@ function buildTrialTimeSlots() {
         minutes += 30;
     }
 
-    return slots;
+    // Remove any slot listed in BLOCKED_TIME_SLOTS (e.g. lunch break)
+    return slots.filter(slot => !BLOCKED_TIME_SLOTS.includes(slot));
 }
+
+// Add/remove strings here (must exactly match the generated "h:mm AM/PM - h:mm AM/PM" format)
+// to block off specific time slots, e.g. for a lunch break.
+const BLOCKED_TIME_SLOTS = [
+    "1:00 PM - 1:30 PM",
+    "1:30 PM - 2:00 PM"
+];
 
 const signupModalOverlay = document.getElementById("signup-modal-overlay");
 const signupModalClose = document.getElementById("signup-modal-close");
@@ -572,6 +580,14 @@ wantsTrialRadios.forEach(radio => {
 
 });
 
+// =========================
+// FORMSPREE ENDPOINT
+// After creating a form at formspree.io, replace the URL below with
+// your own endpoint from the Formspree dashboard
+// (it looks like "https://formspree.io/f/abcdwxyz").
+// =========================
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
 // Handle form submission
 if (signupForm) {
 
@@ -579,23 +595,58 @@ if (signupForm) {
 
         e.preventDefault();
 
+        const submitButton = signupForm.querySelector('button[type="submit"]');
         const formData = new FormData(signupForm);
-        const entry = {};
 
-        formData.forEach((value, key) => {
-            entry[key] = value;
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+        }
+
+        fetch(FORMSPREE_ENDPOINT, {
+
+            method: "POST",
+            body: formData,
+            headers: {
+                "Accept": "application/json"
+            }
+
+        })
+        .then(response => {
+
+            if (response.ok) {
+
+                signupFormView.style.display = "none";
+                signupSuccessView.classList.add("active");
+
+                signupForm.reset();
+                trialDatetimeGroup.classList.remove("open");
+
+            } else {
+
+                response.json().then(data => {
+                    console.error("Formspree error:", data);
+                });
+
+                alert("Something went wrong submitting the form. Please try again, or email us directly at contact@elitestarmath.com.");
+
+            }
+
+        })
+        .catch(error => {
+
+            console.error("Network error submitting form:", error);
+            alert("Something went wrong submitting the form. Please check your connection and try again.");
+
+        })
+        .finally(() => {
+
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = "Submit";
+            }
+
         });
-
-        // NOTE: Email forwarding / storage isn't wired up yet.
-        // For now we just log the submission so it's easy to confirm
-        // the form works end-to-end while that gets set up.
-        console.log("Signup form submission:", entry);
-
-        signupFormView.style.display = "none";
-        signupSuccessView.classList.add("active");
-
-        signupForm.reset();
-        trialDatetimeGroup.classList.remove("open");
 
     });
 
