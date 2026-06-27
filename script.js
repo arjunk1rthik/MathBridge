@@ -651,3 +651,82 @@ if (signupForm) {
     });
 
 }
+// =========================
+// SCHEDULE PREVIEW (in signup modal)
+// =========================
+
+// Time slot tied to each level
+const LEVEL_TIMES = {
+    "1A": "10:00 – 11:00 AM",
+    "2A": "11:00 AM – 12:00 PM",
+    "3A": "3:00 – 4:00 PM",
+    "4A": "6:00 – 7:00 PM",
+    "5A": "7:00 – 8:00 PM"
+};
+
+// Days that meet for each option
+const DAY_COMBOS = {
+    "1": ["Monday", "Wednesday", "Friday"],
+    "2": ["Monday", "Tuesday", "Thursday"],
+    "3": ["Tuesday", "Thursday", "Friday"]
+};
+
+// Every July 2026 date (6th–31st) that falls on each weekday
+const JULY_DATES_BY_DAY = {
+    "Monday":    [6, 13, 20, 27],
+    "Tuesday":   [7, 14, 21, 28],
+    "Wednesday": [8, 15, 22, 29],
+    "Thursday":  [9, 16, 23, 30],
+    "Friday":    [10, 17, 24, 31]
+};
+
+const gradeSelect = document.getElementById("student-grade");
+const optionSelect = document.getElementById("schedule-option");
+const previewBox = document.getElementById("schedule-preview-box");
+const previewText = document.getElementById("schedule-preview-text");
+
+function formatDateList(numbers) {
+    if (numbers.length === 0) return "";
+    if (numbers.length === 1) return `July ${numbers[0]}`;
+
+    const allButLast = numbers.slice(0, -1).join(", ");
+    const last = numbers[numbers.length - 1];
+    return `July ${allButLast}, and ${last}`;
+}
+
+function updateSchedulePreview() {
+
+    const grade = gradeSelect ? gradeSelect.value : "";
+    const option = optionSelect ? optionSelect.value : "";
+
+    if (!grade || !option) {
+        previewBox.style.display = "none";
+        return;
+    }
+
+    const days = DAY_COMBOS[option];
+    const time = LEVEL_TIMES[grade];
+
+    if (!days || !time) {
+        previewBox.style.display = "none";
+        return;
+    }
+
+    let allDates = [];
+    days.forEach(day => {
+        allDates = allDates.concat(JULY_DATES_BY_DAY[day]);
+    });
+    allDates.sort((a, b) => a - b);
+
+    const dayNamesText = days.join(", ").replace(/, ([^,]*)$/, ", and $1");
+
+    previewText.innerHTML =
+        `Classes will meet <strong>${time}</strong> on <strong>${dayNamesText}</strong>.<br>` +
+        `Exact dates: <strong>${formatDateList(allDates)}</strong>.`;
+
+    previewBox.style.display = "block";
+
+}
+
+if (gradeSelect) gradeSelect.addEventListener("change", updateSchedulePreview);
+if (optionSelect) optionSelect.addEventListener("change", updateSchedulePreview);
